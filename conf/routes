@@ -1,0 +1,47 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                controllers.pages.ApplicationController.index
+
+#Term
+GET         /term                            controllers.pages.TermController.index
+GET         /term/add/                       controllers.pages.TermController.addView
+POST        /term/add                        controllers.pages.TermController.add
+POST        /term/search                     controllers.pages.TermController.search
+GET         /term/edit/:code                 controllers.pages.TermController.editView(code:String)
+POST        /term/edit/:code                       controllers.pages.TermController.edit(code:String)
+GET         /term/delete/:code               controllers.pages.TermController.delete(code:String)
+
+#Users
+GET         /users                           controllers.pages.UsersController.index
+GET         /users/add                       controllers.pages.UsersController.addView
+POST        /users/add                       controllers.pages.UsersController.add
+POST        /users/search                    controllers.pages.UsersController.search
+GET         /users/edit/:id                  controllers.pages.UsersController.editView(id:String)
+POST        /users/edit/:id                      controllers.pages.UsersController.edit(id:String)
+GET         /users/delete/:id                controllers.pages.UsersController.delete(id:String)
+
+
+
+GET         /signUp                          controllers.auth.SignUpController.view
+POST        /signUp                          controllers.auth.SignUpController.submit
+GET         /signIn                          controllers.auth.SignInController.view
+POST        /signIn                          controllers.auth.SignInController.submit
+GET         /signOut                         controllers.pages.ApplicationController.signOut
+#GET         /authenticate/:provider          controllers.auth.SocialAuthController.authenticate(provider)
+
+#GET         /password/forgot                 controllers.auth.ForgotPasswordController.view
+#POST        /password/forgot                 controllers.auth.ForgotPasswordController.submit
+#GET         /password/reset/:token           controllers.auth.ResetPasswordController.view(token: java.util.UUID)
+#POST        /password/reset/:token           controllers.auth.ResetPasswordController.submit(token: java.util.UUID)
+GET         /password/change                 controllers.auth.ChangePasswordController.view
+POST        /password/change                 controllers.auth.ChangePasswordController.submit
+
+#GET         /account/email/:email            controllers.auth.ActivateAccountController.send(email: String)
+#GET         /account/activate/:token         controllers.auth.ActivateAccountController.activate(token: java.util.UUID)
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                    controllers.Assets.at(path="/public", file)
+GET         /webjars/*file                   controllers.WebJarAssets.at(file)

@@ -1,0 +1,77 @@
+@import models.tables.DbUser
+@import forms.auth.UserSearchForm
+
+@(user: models.User, users : Seq[DbUser], searchForm: Form[UserSearchForm.Data])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import b3.inline.fieldConstructor
+@main(Messages("home.title"), Some(user)) {
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">マスタ管理</a>
+        </li>
+        <li>
+            <a href="/">ユーザー管理</a>
+        </li>
+        <li class="active">検索一覧</li>
+    </ol>
+
+    <div id="search-form">
+    @helper.form(action = controllers.pages.routes.UsersController.search()) {
+        @helper.CSRF.formField
+
+    <div class="form-group row">
+                <label for="userName" class="col-sm-1 col-form-label my-label-100">ユーザ名</label>
+                <div class="col-sm-5">
+
+                    @b3.text(searchForm("userName"), '_hiddenLabel -> Messages("user.name"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="note" class="col-sm-1 col-form-label my-label-100">備考</label>
+                <div class="col-sm-5">
+
+                    @b3.text(searchForm("note"), '_hiddenLabel -> Messages("user.name"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-1 col-form-label my-label-100"></label>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-block">検索</button>
+                </div>
+            </div>
+    }
+    </div>
+
+    <div id="content">
+        <div id="content-action" class="row">
+            <div class="col-sm-2 pull-right">
+                <a href="@controllers.pages.routes.UsersController.addView()" class="btn btn-success btn-block">新規登録</a>
+            </div>
+        </div>
+        <table class="table table-bordered table-first-center table-hover" id="pagingTable">
+            <thead>
+                <tr>
+                    <th style="width: 50px;"></th>
+                    <th style="width: 300px;" scope="col">ユーザID</th>
+                    <th scope="col">ユーザ名</th>
+                    <th scope="col">部署</th>
+                    <th scope="col">備考</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(user <- users){
+                    <tr>
+                        <td scope="row"><a href="@controllers.pages.routes.UsersController.editView(user.userId)">修</a></td>
+                        <td>@user.userId</td>
+                        <td>@user.userName</td>
+                        <td>@user.department</td>
+                        <td>@user.note</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <nav id="pageArea" style="text-align: center"></nav>
+    </div>
+}

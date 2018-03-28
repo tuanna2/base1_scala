@@ -1,0 +1,75 @@
+@import forms.auth.TermForm
+@import tables.Term
+@(termForm: Form[TermForm.Data], term: Option[Term] = None)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import b3.inline.fieldConstructor
+
+@main(Messages("home.title")) {
+
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">マスタ管理</a>
+        </li>
+        <li>
+            <a href="/term">名称マスタ</a>
+        </li>
+        <li class="active">修正削除</li>
+    </ol>
+
+    <div id="content">
+        <div id="add-form">
+        @helper.form(action = controllers.pages.routes.TermController.edit(term.get.code)) {
+            @helper.CSRF.formField
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100"></label>
+                <div class="col-sm-2">
+                    <button type="submit" id="submit" class="btn btn-primary btn-block">更新</button>
+                </div>
+                <div class="col-sm-2">
+                    <a id="btnTermDelete" class="btn btn-danger btn-block">物理削除</a>
+                </div>
+                <div class="col-sm-2">
+                    <a href="@controllers.pages.routes.TermController.index" class="btn btn-default btn-block">戻る</a>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">コード</label>
+                <div class="col-sm-6">
+                @b3.text(termForm("termCode"), '_hiddenLabel -> Messages("term.code"),'readonly-> true,'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">名称</label>
+                <div class="col-sm-6">
+                @b3.text(termForm("termName"), '_hiddenLabel -> Messages("term.name"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">名称区分</label>
+                <div class="col-sm-6">
+                @b3.text(termForm("termType"), '_hiddenLabel -> Messages("term.type"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">備考</label>
+                <div class="col-sm-10">
+                @b3.textarea(termForm("note"), '_hiddenLabel -> Messages("note"), 'rows -> 10, 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">登録年月日</label>
+                <div class="col-sm-10">
+                    <label style="font-size: 14px">@term.get.createdAt</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">更新年月日</label>
+                <div class="col-sm-10">
+                    <label style="font-size: 14px">@term.get.updatedAt</label>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+}

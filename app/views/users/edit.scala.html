@@ -1,0 +1,83 @@
+@import forms.auth.UserForm
+
+@(userForm: Form[UserForm.Data], user: Option[User] = None)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import b3.inline.fieldConstructor
+
+@main(Messages("home.title")) {
+
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">マスタ管理</a>
+        </li>
+        <li>
+            <a href="/users">ユーザー管理</a>
+        </li>
+        <li class="active">修正削除</li>
+    </ol>
+
+    <div id="content">
+        <div id="add-form">
+        @helper.form(action = controllers.pages.routes.UsersController.edit(user.get.userId)) {
+            @helper.CSRF.formField
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100"></label>
+                <div class="col-sm-2">
+                    <button type="submit" id="submit" class="btn btn-primary btn-block">更新</button>
+                </div>
+                <div class="col-sm-2">
+                    <a id="btnUserDelete" class="btn btn-danger btn-block">物理削除</a>
+
+                </div>
+                <div class="col-sm-2">
+                    <a href="@controllers.pages.routes.UsersController.index" class="btn btn-default btn-block">戻る</a>
+                </div>
+            </div>
+            <div class="form-group row" >
+                <label class="col-sm-1 col-form-label my-label-100">ユーザID</label>
+                <div class="col-sm-6">
+                @b3.text(userForm("userId"), '_hiddenLabel -> Messages("user.name"),'readonly->true, 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">ユーザ名</label>
+                <div class="col-sm-6">
+
+                @b3.text(userForm("userName"), '_hiddenLabel -> Messages("user.name"),'readonly->true, 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">部署</label>
+                <div class="col-sm-6">
+                @b3.text(userForm("department"), '_hiddenLabel -> Messages("user.department"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">パスワード</label>
+                <div class="col-sm-6">
+                @b3.password(userForm("password"), '_hiddenLabel -> Messages("user.password"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">備考</label>
+                <div class="col-sm-10">
+                @b3.textarea(userForm("note"), '_hiddenLabel -> Messages("note"),  'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">登録年月日</label>
+                <div class="col-sm-10">
+                    <label style="font-size: 14px">@user.get.createdAt</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label my-label-100">更新年月日</label>
+                <div class="col-sm-10">
+                    <label style="font-size: 14px">@user.get.updatedAt</label>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+}

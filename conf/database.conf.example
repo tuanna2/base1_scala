@@ -1,0 +1,6 @@
+slick.dbs.default.driver="slick.driver.MySQLDriver$" # You must provide the required Slick driver!
+slick.dbs.default.db.driver="com.mysql.jdbc.Driver"
+slick.dbs.default.db.url="jdbc:mysql://127.0.0.1:3306/tasukedb"
+//slick.dbs.default.db.url="jdbc:mysql://125.212.227.42:3306/tasukedb"
+slick.dbs.default.db.user="root"
+slick.dbs.default.db.password="root"
