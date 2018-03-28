@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Demo</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">工程管理</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">工事計画</a>
+                    </li>
+                    <li>
+                        <a href="#about">工事実績</a>
+                    </li>
+                    <li>
+                        <a href="#contact">利用実績</a>
+                    </li>
+                    <li>
+                        <a href="#contact">マスタ</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            Admin
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">設定</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="#">ログアウト</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container content-top">
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">工事計画</a>
+            </li>
+            <li>
+                <a href="#">工事</a>
+            </li>
+            <li class="active">検索一覧</li>
+        </ol>
+
+        <div id="search-form">
+            <form>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-1 col-form-label">工事番号</label>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="num">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-1 col-form-label">客先</label>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="contact">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-1 col-form-label">現場名</label>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-1 col-form-label">工事名</label>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-1 col-form-label"></label>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary btn-block">検索</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="content">
+            <div id="content-action" class="row">
+                <div class="col-sm-2 pull-right">
+                    <a href="" class="btn btn-success btn-block">新規登録</a>
+                </div>
+            </div>
+            <table class="table table-bordered table-first-center">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;"></th>
+                        <th style="width: 50px;"></th>
+                        <th scope="col">工事番号</th>
+                        <th scope="col">客先</th>
+                        <th scope="col">現場名</th>
+                        <th scope="col">工事名</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">
+                            <a href="#">修</a>
+                        </td>
+                        <td>
+                            <a href="">工程</a>
+                        </td>
+                        <td>A00001</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">
+                            <a href="#">修</a>
+                        </td>
+                        <td>
+                                <a href="">工程</a>
+                            </td>
+                        <td>A00002</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@TwBootstrap</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">
+                            <a href="#">修</a>
+                        </td>
+                        <td>
+                                <a href="">工程</a>
+                            </td>
+                        <td>A00003</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav style="text-align: center">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a  href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

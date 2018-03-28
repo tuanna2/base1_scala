@@ -24,6 +24,5 @@ conf/silhouette.conf
 project/project
 project/artifact
 devnet.iml
-public/
 app/.DS_Store
 
