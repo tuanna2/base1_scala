@@ -1,0 +1,14 @@
+# --- !Ups
+CREATE TABLE student (
+  id VARCHAR(6) NOT NULL PRIMARY KEY,
+  name VARCHAR(50),
+  age INT(3),
+  class VARCHAR(6),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_by VARCHAR(10),
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  updated_by VARCHAR(10)
+);
+
+# --- !Downs
+DROP TABLE student;

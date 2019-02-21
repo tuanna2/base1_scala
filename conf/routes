@@ -11,8 +11,18 @@ GET         /term/add/                       controllers.pages.TermController.ad
 POST        /term/add                        controllers.pages.TermController.add
 POST        /term/search                     controllers.pages.TermController.search
 GET         /term/edit/:code                 controllers.pages.TermController.editView(code:String)
-POST        /term/edit/:code                       controllers.pages.TermController.edit(code:String)
+POST        /term/edit/:code                 controllers.pages.TermController.edit(code:String)
 GET         /term/delete/:code               controllers.pages.TermController.delete(code:String)
+
+#Student
+GET         /student                            controllers.pages.StudentController.index
+GET         /student/add/                       controllers.pages.StudentController.addView
+POST        /student/add                        controllers.pages.StudentController.add
+POST        /student/search                     controllers.pages.StudentController.search
+GET         /student/edit/:id                 controllers.pages.StudentController.editView(id:String)
+POST        /student/edit/:id                 controllers.pages.StudentController.edit(id:String)
+GET         /student/delete/:id                controllers.pages.StudentController.delete(id:String)
+
 
 #Users
 GET         /users                           controllers.pages.UsersController.index

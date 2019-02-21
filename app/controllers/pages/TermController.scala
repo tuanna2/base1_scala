@@ -34,13 +34,6 @@ class TermController @Inject() (
     }
   }
 
-  def find: Action[AnyContent] = silhouette.SecuredAction.async { implicit request =>
-    val page = request.getQueryString("page").getOrElse("1").toInt
-    for {
-      terms <- termService.find(page)
-    } yield Ok(views.html.term.index(request.identity, terms, TermSearchForm.form))
-  }
-
   def search: Action[AnyContent] = silhouette.SecuredAction.async { implicit request =>
 
     TermSearchForm.form.bindFromRequest.fold(
@@ -57,16 +50,6 @@ class TermController @Inject() (
     termService.delete(code).map {
       rs =>
         Ok("{code: 200}")
-    }
-  }
-
-  def softDelete(code: String): Action[AnyContent] = silhouette.SecuredAction.async { implicit request =>
-    for {
-      term <- termService.retrieve(code)
-    } yield {
-      val newTerm = term.get.copy(isDeleted = Some(1))
-      termService.edit(newTerm)
-      Ok(views.html.term.add(TermForm.form))
     }
   }
 

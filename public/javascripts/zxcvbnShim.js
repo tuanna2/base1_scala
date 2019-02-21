@@ -11,7 +11,16 @@ $(document).ready(function() {
             })
         }
     })
-
+    $("#btnStudentDelete").click(function(e){
+        var arr = window.location.href.split('/');
+        var code = arr[arr.length-1];
+        var r = confirm("Delete "+code+"？");
+        if (r) {
+            $.get('/student/delete/'+code, function(data) {
+                window.location = '/student';
+            })
+        }
+    })
     $("#btnConstructionDelete").click(function(e) {
         var arr = window.location.href.split('/');
         var code = arr[arr.length-1];

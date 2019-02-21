@@ -1,0 +1,78 @@
+@import models.tables.Student
+@import forms.auth.StudentSearchForm
+
+@(user: models.User, students : Seq[Student], searchForm: Form[StudentSearchForm.Data])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import b3.inline.fieldConstructor
+
+@main(Messages("home.title"), Some(user)) {
+
+    <ol class="breadcrumb">
+
+        <li class="active">Student</li>
+    </ol>
+
+    <div id="search-form">
+    @helper.form(action = controllers.pages.routes.StudentController.search()) {
+        @helper.CSRF.formField
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-1 col-form-label my-label-100">ID</label>
+                <div class="col-sm-5">
+                    @b3.text(searchForm("id"), '_hiddenLabel -> Messages("student.id"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-1 col-form-label my-label-100">Name</label>
+                <div class="col-sm-5">
+                @b3.text(searchForm("name"), '_hiddenLabel -> Messages("student.name"), 'class -> "form-control")
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-1 col-form-label my-label-100">Class</label>
+                <div class="col-sm-5">
+                @b3.text(searchForm("clas"), '_hiddenLabel -> Messages("student.clas"), 'class -> "form-control")
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-1 col-form-label my-label-100"></label>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                </div>
+            </div>
+    }
+    </div>
+
+    <div id="content">
+        <div id="content-action" class="row">
+            <div class="col-sm-2 pull-right">
+                <a href="@controllers.pages.routes.StudentController.addView()" class="btn btn-success btn-block">ADD STUDENT</a>
+            </div>
+        </div>
+        <table class="table table-bordered table-first-center table-hover" id="pagingTable">
+            <thead>
+                <tr>
+                    <th style="width: 50px;"></th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(student <- students){
+                    <tr>
+                        <td scope="row"><a href="@controllers.pages.routes.StudentController.editView(student.id)">Edit</a></td>
+                        <td>@student.id</td>
+                        <td>@student.name</td>
+                        <td>@student.clas</td>
+                        <td>@student.age</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <nav id="pageArea" style="text-align: center"></nav>
+
+    </div>
+}

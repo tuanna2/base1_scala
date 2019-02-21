@@ -1,0 +1,56 @@
+@import forms.auth.StudentForm
+
+@(studentForm: Form[StudentForm.Data])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import b3.inline.fieldConstructor
+
+@main(Messages("home.title")) {
+    <ol class="breadcrumb">
+
+        <li>
+            <a href="/student">Student</a>
+        </li>
+        <li class="active">Add</li>
+    </ol>
+
+    <div id="content">
+        <div id="add-form">
+        @helper.form(action = controllers.pages.routes.StudentController.add()) {
+            @helper.CSRF.formField
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label my-label-100"></label>
+                    <div class="col-sm-2">
+                        <button type="submit" id="submit" class="btn btn-primary btn-block">Add</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="@controllers.pages.routes.StudentController.index" class="btn btn-default btn-block">Back</a>
+                    </div>
+                </div>
+                <div class="form-group row" style="display: none;">
+                    <label class="col-sm-1 col-form-label my-label-100">ID</label>
+                    <div class="col-sm-6">
+                    @b3.text(studentForm("id"), '_hiddenLabel -> Messages("student.id"), 'class -> "form-control input-lg", 'value -> "0000")
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label my-label-100">Name</label>
+                    <div class="col-sm-6">
+                    @b3.text(studentForm("name"), '_hiddenLabel -> Messages("student.name"), 'class -> "form-control input-lg")
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label my-label-100">Age</label>
+                    <div class="col-sm-6">
+                    @b3.text(studentForm("age"), '_hiddenLabel -> Messages("student.age"), 'class -> "form-control input-lg")
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label my-label-100">Class</label>
+                    <div class="col-sm-6">
+                        @b3.textarea(studentForm("clas"), '_hiddenLabel -> Messages("student.clas"),  'class -> "form-control input-lg")
+                    </div>
+                </div>
+        }
+        </div>
+    </div>
+}
