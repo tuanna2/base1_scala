@@ -26,10 +26,20 @@ class StudentController @Inject() (
   extends Controller with I18nSupport {
 
   def index: Action[AnyContent] = silhouette.SecuredAction.async { implicit request =>
+    val page = request.getQueryString("page").getOrElse("1").toInt
     for {
-      students <- studentService.find(1)
+      students <- studentService.all
     } yield {
       Ok(views.html.student.index(request.identity, students, StudentSearchForm.form))
+    }
+  }
+
+  def pagin(offset: Int): Action[AnyContent] = silhouette.SecuredAction.async { implicit request =>
+    for {
+      data <- studentService.find(offset)
+      length <- studentService.count
+    } yield {
+      Ok(views.html.student.pagin(request.identity, length, data, StudentSearchForm.form))
     }
   }
 

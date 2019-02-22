@@ -15,7 +15,8 @@ POST        /term/edit/:code                 controllers.pages.TermController.ed
 GET         /term/delete/:code               controllers.pages.TermController.delete(code:String)
 
 #Student
-GET         /student                            controllers.pages.StudentController.index
+GET         /student                         controllers.pages.StudentController.index
+GET         /student/page/:offset               controllers.pages.StudentController.pagin(offset: Int)
 GET         /student/add/                       controllers.pages.StudentController.addView
 POST        /student/add                        controllers.pages.StudentController.add
 POST        /student/search                     controllers.pages.StudentController.search

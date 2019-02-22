@@ -12,7 +12,7 @@ class StudentServiceImpl @Inject() (studentDAO: StudentDAO) extends StudentServi
 
   override def save(student: Student) = studentDAO.save(student)
 
-  override def find(page: Int = 1) = studentDAO.find(page)
+  override def find(page: Int) = studentDAO.find(page)
 
   override def all() = studentDAO.all()
 

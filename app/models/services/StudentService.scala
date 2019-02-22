@@ -12,7 +12,7 @@ trait StudentService {
 
   def retrieve(id: String): Future[Option[Student]]
 
-  def find(page: Int = 1): Future[Seq[Student]]
+  def find(page: Int): Future[Seq[Student]]
 
   def save(student: Student): Future[Int]
 

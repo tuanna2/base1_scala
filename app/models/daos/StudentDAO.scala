@@ -8,7 +8,7 @@ trait StudentDAO {
 
   def find(id: String): Future[Option[Student]]
 
-  def find(page: Int = 1, limit: Int = 5): Future[Seq[Student]]
+  def find(page: Int, limit: Int = 5): Future[Seq[Student]]
 
   def find(formData: StudentSearchForm.Data): Future[Seq[Student]]
 

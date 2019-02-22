@@ -23,9 +23,7 @@ class StudentDAOImpl @Inject() (protected val dbConfigProvider: DatabaseConfigPr
     students.filter(_.id === id).result.headOption
   }
 
-  override def find(page: Int = 1, limit: Int = 5): Future[Seq[Student]] = db.run {
-    students.result
-  }
+  override def find(page: Int, limit: Int = 5): Future[Seq[Student]] = db.run(students.drop((page - 1) * limit).take(limit).result)
 
   override def find(formData: StudentSearchForm.Data): Future[Seq[Student]] = {
     db.run(students.filter(data => data.id.like("%" + formData.id + "%") && data.name.like("%" + formData.name + "%") && data.clas.like("%" + formData.clas + "%")).result)
